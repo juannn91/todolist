@@ -17,6 +17,21 @@
   <body>
     <div class="container">
       <h1>What do I need to do today</h1>
+
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Put your new task name heare"
+          id="inputTask"
+        />
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button" onclick="createTask()">
+            Create
+          </button>
+        </div>
+      </div>
+
       <div>
         <ul class="list-group mylist" id="list-content"></ul>
       </div>
