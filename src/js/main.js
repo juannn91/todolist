@@ -2,12 +2,12 @@ let list = [
   {
     id: 1,
     name: "Replicar el eje del profe",
-    done: true,
+    done: false,
   },
   {
     id: 2,
     name: "Replicar el eje del profe 2",
-    done: true,
+    done: false,
   },
   {
     id: 3,
@@ -19,16 +19,20 @@ let list = [
     name: "Replicar el eje del profe 4",
     done: false,
   },
+];
+
+let done = [
   {
     id: 5,
     name: "XXXX",
-    done: false,
+    done: true,
   },
 ];
 
-const listContainer = document.querySelector("#list-content");
+const listContainer = document.querySelector("#list-todo");
+const listDoneContainer = document.querySelector("#list-done");
 
-paintList(list);
+paintAll();
 
 function createTask(task) {
   const input = document.querySelector("#inputTask");
@@ -42,19 +46,38 @@ function createTask(task) {
 }
 
 const checkTask = (checkbox, id) => {
-  const task = list.find((element) => {
+  const isChecked = checkbox.checked;
+  const originList = isChecked ? list : done;
+  const destinyList = isChecked ? done : list;
+
+  const taskIndex = originList.findIndex((element) => {
     return element.id === id;
   });
+  const task = originList.splice(taskIndex, 1)[0];
+  destinyList.push(task);
   task.done = checkbox.checked;
-  paintList(list);
+  paintAll();
 };
 
-function paintList(lst) {
+function paintAll() {
+  paintTodo();
+  paintDone();
+}
+
+function paintTodo() {
+  paintList(list, listContainer);
+}
+
+function paintDone() {
+  paintList(done, listDoneContainer);
+}
+
+function paintList(lst, domContainer) {
   let res = "";
   lst.forEach((element) => {
     res += renderListItem(element);
   });
-  listContainer.innerHTML = res;
+  domContainer.innerHTML = res;
 }
 
 function renderListItem(item) {
