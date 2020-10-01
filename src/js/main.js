@@ -2,7 +2,7 @@ let list = [
   {
     id: 1,
     name: "Replicar el eje del profe",
-    done: true,
+    done: false,
   },
   {
     id: 2,
@@ -26,9 +26,10 @@ let list = [
   },
 ];
 
-const listContainer = document.querySelector("#list-content");
+const listContainer = document.querySelector("#list-todo");
+const listDoneContainer = document.querySelector("#list-done");
 
-paintList(list);
+patinAll();
 
 function createTask(task) {
   const input = document.querySelector("#inputTask");
@@ -38,7 +39,7 @@ function createTask(task) {
     done: false,
   });
   input.value = "";
-  paintList(list);
+  patinAll();
 }
 
 const checkTask = (checkbox, id) => {
@@ -46,15 +47,38 @@ const checkTask = (checkbox, id) => {
     return element.id === id;
   });
   task.done = checkbox.checked;
-  paintList(list);
+  patinAll();
 };
 
-function paintList(lst) {
+function patinAll() {
+  paintTodoList();
+  paintDoneList();
+}
+
+function paintTodoList() {
+  const todoList = getTodoList();
+  paintList(todoList, listContainer);
+}
+
+function getTodoList() {
+  return list.filter((task) => !task.done);
+}
+
+function paintDoneList() {
+  const doneList = getDoneList();
+  paintList(doneList, listDoneContainer);
+}
+
+function getDoneList() {
+  return list.filter((task) => task.done);
+}
+
+function paintList(lst, domList) {
   let res = "";
   lst.forEach((element) => {
     res += renderListItem(element);
   });
-  listContainer.innerHTML = res;
+  domList.innerHTML = res;
 }
 
 function renderListItem(item) {
