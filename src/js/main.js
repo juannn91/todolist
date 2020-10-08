@@ -26,10 +26,32 @@ let list = [
   },
 ];
 
-const listContainer = document.querySelector("#list-todo");
-const listDoneContainer = document.querySelector("#list-done");
 
-patinAll();
+let listContainer;
+let listDoneContainer;;
+
+let options = {
+  group: 'todolist',
+  animation: 100,
+  onAdd: function(data){
+    if(data.to.id === 'list-done'){
+      console.log("done");
+    }else{
+      console.log("not done");
+    }
+    
+  }
+}
+
+window.addEventListener('load', function(){
+  alert()
+  listContainer = document.querySelector("#list-todo");
+  Sortable.create(listContainer, options);
+  listDoneContainer = document.querySelector("#list-done");
+  Sortable.create(listDoneContainer, options);
+  patinAll();
+});
+
 
 function createTask(task) {
   const input = document.querySelector("#inputTask");
