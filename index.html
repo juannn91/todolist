@@ -42,8 +42,8 @@
           <h2>Todo</h2>
           <ul class="list-group mylist" id="list-todo">
 
-            <li v-for="task in todoList" class="list-group-item list-item" :class="{'is-done' : task.done}">
-              <input type="checkbox" v-model="task.done" aria-label="Checkbox for following text input" > {{task.name}}
+            <li v-for="task in todoList" :key="task.id" class="list-group-item list-item" :class="{'is-done' : task.done}">
+              <input type="checkbox" v-model="task.done" aria-label="Checkbox for following text input" > {{task.name}} - {{task.done}}
             </li>
 
           </ul>
@@ -52,8 +52,8 @@
           <h2>Done</h2>
           <ul class="list-group mylist" id="list-done">
           
-            <li v-for="task in doneList" class="list-group-item list-item" :class="{'is-done' : task.done}">
-              <input type="checkbox" v-model="task.done" aria-label="Checkbox for following text input" > {{task.name}}
+            <li v-for="task in doneList" :key="task.id" class="list-group-item list-item" :class="{'is-done' : task.done}">
+              <input type="checkbox" v-model="task.done" aria-label="Checkbox for following text input" > {{task.name}} - {{task.done}}
             </li>
           
           </ul>
