@@ -27,86 +27,41 @@ let list = [
 ];
 
 
-let listContainer;
-let listDoneContainer;;
-
-let options = {
-  group: 'todolist',
-  animation: 100,
-  onAdd: function(data){
-    if(data.to.id === 'list-done'){
-      console.log("done");
-    }else{
-      console.log("not done");
-    }
-    
-  }
-}
-
 window.addEventListener('load', function(){
-  alert()
-  listContainer = document.querySelector("#list-todo");
-  Sortable.create(listContainer, options);
-  listDoneContainer = document.querySelector("#list-done");
-  Sortable.create(listDoneContainer, options);
-  patinAll();
+  var app = new Vue({
+    el: '#todo-app',
+    data: {
+      title: 'What do I need to do today!',
+      list: list,
+      newTaskName: ''
+    },
+    computed: {
+      todoList(){
+        return this.list.filter((task) => !task.done);
+      },
+      doneList(){
+        return this.list.filter((task) => task.done);
+      }
+    },
+    methods: {
+      createTask(){
+        this.list.push({
+          id: list.length + 1,
+          name: this.newTaskName,
+          done: false,
+        });
+        this.newTaskName = ''
+      }
+    },
+  })
 });
 
 
-function createTask(task) {
-  const input = document.querySelector("#inputTask");
-  list.push({
-    id: list.length + 1,
-    name: input.value,
-    done: false,
-  });
-  input.value = "";
-  patinAll();
-}
 
-const checkTask = (checkbox, id) => {
-  const task = list.find((element) => {
-    return element.id === id;
-  });
-  task.done = checkbox.checked;
-  patinAll();
-};
 
-function patinAll() {
-  paintTodoList();
-  paintDoneList();
-}
 
-function paintTodoList() {
-  const todoList = getTodoList();
-  paintList(todoList, listContainer);
-}
 
-function getTodoList() {
-  return list.filter((task) => !task.done);
-}
 
-function paintDoneList() {
-  const doneList = getDoneList();
-  paintList(doneList, listDoneContainer);
-}
 
-function getDoneList() {
-  return list.filter((task) => task.done);
-}
 
-function paintList(lst, domList) {
-  let res = "";
-  lst.forEach((element) => {
-    res += renderListItem(element);
-  });
-  domList.innerHTML = res;
-}
 
-function renderListItem(item) {
-  const isDone = item.done ? "is-done" : "";
-  const checked = item.done ? "checked" : "";
-  return `<li class="list-group-item list-item ${isDone}">
-              <input type="checkbox" ${checked} aria-label="Checkbox for following text input" onclick="checkTask(this, ${item.id})"> ${item.name}
-          </li>`;
-}
