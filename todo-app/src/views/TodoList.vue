@@ -1,24 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+<template>
+  <div>
 
-    <!-- CSS only -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-      crossorigin="anonymous"
-    />
-    <link href="./src/style/main.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  </head>
-  <body>
-    <div class="container" id="todo-app">
+ <div class="container" id="todo-app">
       <h1>{{title}}</h1>
 
       <div class="input-group mb-3">
@@ -60,6 +43,44 @@
         </div>
       </div>
     </div>
-  </body>
-  <script src="./src/js/main.js"></script>
-</html>
+
+  </div>
+</template>
+
+<script>
+import data from '../models/listData.js';
+
+export default {
+    data() {
+      return {
+        title: 'What do I need to do today!',
+        list: data,
+        newTaskName: ''
+      }
+    },
+    computed: {
+      todoList(){
+        return this.list.filter((task) => !task.done);
+      },
+      doneList(){
+        return this.list.filter((task) => task.done);
+      }
+    },
+    methods: {
+      createTask(){
+        this.list.push({
+          id: this.list.length + 1,
+          name: this.newTaskName,
+          done: false,
+        });
+        this.newTaskName = ''
+      }
+    },
+}
+</script>
+
+<style lang="scss">
+  .is-done {
+    text-decoration: line-through;
+  }  
+</style>
