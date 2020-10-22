@@ -1,8 +1,7 @@
 <template>
   <div>
-
- <div class="container" id="todo-app">
-      <h1>{{title}}</h1>
+    <div class="container" id="todo-app">
+      <h1>{{ title }}</h1>
 
       <div class="input-group mb-3">
         <input
@@ -24,63 +23,62 @@
         <div class="col">
           <h2>Todo</h2>
           <ul class="list-group mylist" id="list-todo">
-
-            <li v-for="task in todoList" :key="task.id" class="list-group-item list-item" :class="{'is-done' : task.done}">
-              <input type="checkbox" v-model="task.done" aria-label="Checkbox for following text input" > {{task.name}} - {{task.done}}
-            </li>
-
+            <task v-for="task in todoList" 
+                  :key="task.id" 
+                  :task="task"/>
           </ul>
         </div>
         <div class="col">
           <h2>Done</h2>
           <ul class="list-group mylist" id="list-done">
-          
-            <li v-for="task in doneList" :key="task.id" class="list-group-item list-item" :class="{'is-done' : task.done}">
-              <input type="checkbox" v-model="task.done" aria-label="Checkbox for following text input" > {{task.name}} - {{task.done}}
-            </li>
-          
+            <task v-for="task in doneList" 
+                  :key="task.id" 
+                  :task="task"/>
           </ul>
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
-import data from '../models/listData.js';
+import data from "../models/listData.js";
+import Task from "../components/Task.vue";
 
 export default {
-    data() {
-      return {
-        title: 'What do I need to do today!',
-        list: data,
-        newTaskName: ''
-      }
+  components: {
+    Task
+  },
+  data() {
+    return {
+      title: "What do I need to do today!",
+      list: data,
+      newTaskName: "",
+    };
+  },
+  computed: {
+    todoList() {
+      return this.list.filter((task) => !task.done);
     },
-    computed: {
-      todoList(){
-        return this.list.filter((task) => !task.done);
-      },
-      doneList(){
-        return this.list.filter((task) => task.done);
-      }
+    doneList() {
+      return this.list.filter((task) => task.done);
     },
-    methods: {
-      createTask(){
-        this.list.push({
-          id: this.list.length + 1,
-          name: this.newTaskName,
-          done: false,
-        });
-        this.newTaskName = ''
-      }
+  },
+  methods: {
+    createTask() {
+      this.list.push({
+        id: this.list.length + 1,
+        name: this.newTaskName,
+        done: false,
+      });
+      this.newTaskName = "";
     },
-}
+  },
+};
 </script>
 
 <style lang="scss">
-  .is-done {
-    text-decoration: line-through;
-  }  
+.is-done {
+  text-decoration: line-through;
+}
 </style>
