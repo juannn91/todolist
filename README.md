@@ -1,15 +1,29 @@
-# todolist
+# todo-app
 
-an university todo list example
+## Project setup
+```
+npm install
+```
 
-## Intalation steps
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-1. Download the repository from github.
-2. Run your html in your browser.
+### Compiles and minifies for production
+```
+npm run build
+```
 
-# Trabajo para miercoles 30 sep 2020
+### Run your unit tests
+```
+npm run test:unit
+```
 
-1. Que las tareas me agreguen con enter
-2. Separar las tareas por en dos col mostrando
-   - Tareas por completar
-   - Tareas completadas
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
