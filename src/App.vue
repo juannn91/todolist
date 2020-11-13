@@ -11,6 +11,7 @@
           <b-nav-item to="/about">Price</b-nav-item>
           <b-nav-item to="/about">Suport</b-nav-item>
           <b-nav-item disabled to="/about">Blog</b-nav-item>
+          <b-nav-item to="/contact">Contact</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
