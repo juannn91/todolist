@@ -1,5 +1,6 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router';
+import VueRouter from 'vue-router'
+import Users from '../views/Users.vue'
 import TodoList from '../views/TodoList.vue';
 import HomePage from '../views/HomePage.vue';
 
@@ -17,6 +18,11 @@ const routes = [
     name: 'TodoList',
     component: TodoList
   }, 
+  {
+    path: '/Users',
+    name: 'Users',
+    component: Users
+  },
   {
     path: '/about',
     name: 'About',
