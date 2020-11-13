@@ -86,4 +86,8 @@
     color: darkgreen;
     margin-top: 20;
   }
+
+  .container {
+    margin-bottom: 50px;
+  }
 </style>
