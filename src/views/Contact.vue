@@ -3,25 +3,53 @@
     <div>
       <h2 id="mainTitle">Contact Us!</h2>
     </div>
-    <div class='container'>
-      <div class="card" id='inputCard'>
+    <div>
+      <b-card id='inputCard'>
         <h4 class="card-title">Question? Send Us a Message</h4>
-        <div class="card-body">
-          <input class='form-control' placeholder='Your Email' type="text">
-          <textarea class="form-control rounded-0" placeholder='Type your Message' type=""></textarea>
+        <div>
+          <b-form-input v-model="text" placeholder="Enter your name"></b-form-input>
+          <div class="mt-2">Value: {{ text }}</div>
         </div>
-        <div id='enterDiv'>
+        <div>
+          <b-form-textarea
+            id="textarea"
+            v-model="text"
+            placeholder="Enter something..."
+            rows="3"
+            max-rows="6"
+          ></b-form-textarea>
+          <pre class="mt-3 mb-0">{{ text }}</pre>
+        </div>
+        <b-card-text id='enterDiv'>
           <p>Thanks for Sharing!</p>
           <a id='enter' href="#" class="btn btn-outline-danger">Enter</a>
-        </div>
-        <div id='signDiv'>
+        </b-card-text>
+        <b-card-text id='signDiv'>
           <p>Want to create an account?</p>
           <a href="#">Sign Up</a>
-        </div>
-      </div>
+        </b-card-text>
+      </b-card>
     </div>
   </div>
 </template>
+
+<script>
+  export default {
+    data() {
+      return {
+        text: ''
+      }
+    }
+  }
+
+  export default {
+    data() {
+      return {
+        text: ''
+      }
+    }
+  }
+</script>
 
 <style>
   * {
@@ -88,6 +116,7 @@
   }
 
   .container {
-    margin-bottom: 50px;
+    margin-bottom: 50;
   }
+
 </style>
