@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import VueRouter from 'vue-router';
 import TodoList from '../views/TodoList.vue';
+import HomePage from '../views/HomePage.vue';
 
 
 Vue.use(VueRouter)
@@ -9,14 +9,14 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'TodoList',
-    component: TodoList
+    name: 'Home',
+    component: HomePage
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: Home
-  },
+    path: '/todoList',
+    name: 'TodoList',
+    component: TodoList
+  }, 
   {
     path: '/about',
     name: 'About',
@@ -25,6 +25,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   }
+
 ]
 
 const router = new VueRouter({
