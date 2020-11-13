@@ -34,14 +34,7 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        text: ''
-      }
-    }
-  }
-
+  
   export default {
     data() {
       return {
