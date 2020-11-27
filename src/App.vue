@@ -7,6 +7,7 @@
       <b-collapse is-nav>
         <b-navbar-nav>
           <b-nav-item to="/">Features</b-nav-item>
+          <b-nav-item to="/Features">Features</b-nav-item>
           <b-nav-item to="/Users">Users</b-nav-item>
           <b-nav-item to="/about">Price</b-nav-item>
           <b-nav-item to="/about">Suport</b-nav-item>

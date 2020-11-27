@@ -1,12 +1,21 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Users from '../views/Users.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Features from '../views/Features.vue';
+import Users from '../views/Users.vue';
 import TodoList from '../views/TodoList.vue';
 import HomePage from '../views/HomePage.vue';
 import Contact from '../views/Contact.vue';
 Vue.use(VueRouter)
 
-const routes = [{
+const routes = [
+    {
+        path: '/Features',
+        name: 'Features',
+        component: Features
+    },
+    
+    {
+    
         path: '/',
         name: 'Home',
         component: HomePage
