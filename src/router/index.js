@@ -1,17 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import TodoList from '../views/TodoList.vue';
+import Juego from '../views/Juego.vue'
 
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'TodoList',
-    component: TodoList
-  },
+    {
+      path: '/jugar',
+      name: 'Jugar',
+      component: Juego
+    },
   {
     path: '/home',
     name: 'Home',
