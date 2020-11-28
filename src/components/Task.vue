@@ -1,21 +1,27 @@
 <template>
-  <li class="task" 
+  <div class="task" 
       :class="{ 'is-done': task.done }"
    >
-    <input
-      type="checkbox"
-      v-model="task.done"
-      aria-label="Checkbox for following text input"
-    />
-    <div class="content-editable" @click="onClickTask">
-      <div v-if="!isInputVisible">
-        {{ task.name }} 
+   
+    <label @blur="changeState"></label>
+    <b-alert :variant="isInputVisible ? 'danger' : 'success'" show class="content-editable" @click="onClickTask" >
+
+      <input
+        type="checkbox"
+        v-model="task.done"
+        aria-label="Checkbox for following text input"
+      />
+      <div  >
+        <div v-if="!isInputVisible" >
+          {{ task.name }} 
+        </div>
+        <div v-else>
+          <input type="text" v-model="task.name" @blur="isInputVisible=true" ref="task">
+        </div>
       </div>
-      <div v-else>
-        <input type="text" v-model="task.name" @blur="isInputVisible=false" ref="task">
-      </div>
-    </div>
-  </li>
+    </b-alert>
+ 
+  </div>
 </template>
 
 <script>
@@ -36,7 +42,13 @@ export default {
       this.isInputVisible=true;
       await this.$nextTick(); 
       this.$refs.task.focus();
+      this.changeState();
+    },
+  computed:{
+    changeState(){
+      return this.isInputVisible=!this.isInputVisible;
     }
+  }
   }
 };
 </script>
@@ -58,8 +70,13 @@ export default {
       height: 50px;
       >div{
         position: absolute;
-        top: 0px;
-        left: 0px;
+        top: 11px;
+        left: 40px;
+      }
+      >input{
+        position: absolute;
+        top: 18px;
+        left: 20px;
       }
     }
   }
